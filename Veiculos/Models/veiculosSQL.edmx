@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="vdlwebcontrolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="t__companies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompDB" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompPHC" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompPC" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompNAV" Type="nvarchar" MaxLength="100" />
+          <Property Name="queueNAV" Type="nvarchar" MaxLength="100" />
+          <Property Name="pcs_enabled" Type="int" />
+          <Property Name="das_enabled" Type="int" />
+          <Property Name="hbc_enabled" Type="int" />
+          <Property Name="hbc_form_enabled" Type="int" />
+          <Property Name="mas_enabled" Type="int" />
+          <Property Name="status" Type="int" />
+          <Property Name="NIF" Type="nvarchar" MaxLength="20" />
+          <Property Name="Cod" Type="nvarchar" MaxLength="10" />
+          <Property Name="NAVComp" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="t__departments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="department_pt" Type="nvarchar" MaxLength="50" />
+          <Property Name="department_en" Type="nvarchar" MaxLength="50" />
+          <Property Name="department_de" Type="nvarchar" MaxLength="50" />
+          <Property Name="pcs_enabled" Type="int" />
+          <Property Name="das_enabled" Type="int" />
+          <Property Name="hbc_enabled" Type="int" />
+          <Property Name="insert_date" Type="datetime" />
+          <Property Name="insert_author" Type="int" />
+          <Property Name="update_date" Type="datetime" />
+          <Property Name="update_author" Type="int" />
+          <Property Name="status" Type="int" />
+          <Property Name="sort_order" Type="int" />
+          <Property Name="director_id" Type="int" />
+          <Property Name="director_cc" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductFilter" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="t_ecf_header">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestDate" Type="datetime" />
+          <Property Name="UserIdExpenses" Type="int" />
+          <Property Name="VDLCompany" Type="int" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="250" />
+          <Property Name="NrECEmployee" Type="nvarchar" MaxLength="250" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="t_ecf_lines_fuel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EcfFk" Type="int" />
+          <Property Name="LineNr" Type="int" />
+          <Property Name="CarRegistration" Type="nvarchar" MaxLength="20" />
+          <Property Name="User" Type="nvarchar" MaxLength="50" />
+          <Property Name="FleetCardNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaymentCardNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="KilometersInitial" Type="int" />
+          <Property Name="KilometersFinal" Type="int" />
+          <Property Name="Liters" Type="float" />
+          <Property Name="ExpenseAmount" Type="float" />
+          <Property Name="ExpenseDate" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="VendorNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="VendorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AttachmentPath" Type="nvarchar" MaxLength="250" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="250" />
+          <Property Name="NrEC" Type="nvarchar" MaxLength="250" />
+          <Property Name="Avg" Type="float" />
+        </EntityType>
+        <EntityType Name="t_ecf_vehicles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="No_" Type="int" />
+          <Property Name="Matricula" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Marca" Type="nvarchar" MaxLength="50" />
+          <Property Name="Modelo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Categoria" Type="nvarchar" MaxLength="50" />
+          <Property Name="Combustivel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ano" Type="int" />
+          <Property Name="Empresa" Type="int" />
+          <Property Name="Departamento" Type="int" />
+          <Property Name="Responsavel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Utilizadores_9_18" Type="nvarchar" MaxLength="500" />
+          <Property Name="Utilizadores_18_9" Type="nvarchar" MaxLength="500" />
+          <Property Name="NumCartaoPagamento" Type="nvarchar" MaxLength="50" />
+          <Property Name="RefCartaoPagamento" Type="nvarchar" MaxLength="50" />
+          <Property Name="NumCartaoFrota" Type="nvarchar" MaxLength="50" />
+          <Property Name="RefCartaoFrota" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kilometros" Type="int" />
+          <Property Name="PlafondMensal" Type="float" />
+          <Property Name="Observacoes" Type="nvarchar" MaxLength="500" />
+          <Property Name="Car" Type="nvarchar" MaxLength="100" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'vdlwebcontrol.dbo.t_ecf_vehicle_types' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="t_ecf_vehicle_types">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_t_ecf_vehicles_t__companies">
+          <End Role="t__companies" Type="Self.t__companies" Multiplicity="0..1" />
+          <End Role="t_ecf_vehicles" Type="Self.t_ecf_vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t__companies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="t_ecf_vehicles">
+              <PropertyRef Name="Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_ecf_vehicles_t__departments">
+          <End Role="t__departments" Type="Self.t__departments" Multiplicity="0..1" />
+          <End Role="t_ecf_vehicles" Type="Self.t_ecf_vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t__departments">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="t_ecf_vehicles">
+              <PropertyRef Name="Departamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="vdlwebcontrolModelStoreContainer">
+          <EntitySet Name="t__companies" EntityType="Self.t__companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t__departments" EntityType="Self.t__departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_ecf_header" EntityType="Self.t_ecf_header" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_ecf_lines_fuel" EntityType="Self.t_ecf_lines_fuel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_ecf_vehicles" EntityType="Self.t_ecf_vehicles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_ecf_vehicle_types" EntityType="Self.t_ecf_vehicle_types" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [t_ecf_vehicle_types].[ID] AS [ID], 
+    [t_ecf_vehicle_types].[tipo] AS [tipo]
+    FROM [dbo].[t_ecf_vehicle_types] AS [t_ecf_vehicle_types]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_t_ecf_vehicles_t__companies" Association="Self.FK_t_ecf_vehicles_t__companies">
+            <End Role="t__companies" EntitySet="t__companies" />
+            <End Role="t_ecf_vehicles" EntitySet="t_ecf_vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_ecf_vehicles_t__departments" Association="Self.FK_t_ecf_vehicles_t__departments">
+            <End Role="t__departments" EntitySet="t__departments" />
+            <End Role="t_ecf_vehicles" EntitySet="t_ecf_vehicles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="vdlwebcontrolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="t__companies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompDB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompPHC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompPC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompNAV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="queueNAV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="pcs_enabled" Type="Int32" />
+          <Property Name="das_enabled" Type="Int32" />
+          <Property Name="hbc_enabled" Type="Int32" />
+          <Property Name="hbc_form_enabled" Type="Int32" />
+          <Property Name="mas_enabled" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="NIF" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Cod" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NAVComp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="t_ecf_vehicles" Relationship="Self.FK_t_ecf_vehicles_t__companies" FromRole="t__companies" ToRole="t_ecf_vehicles" />
+        </EntityType>
+        <EntityType Name="t__departments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="department_pt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="department_en" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="department_de" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pcs_enabled" Type="Int32" />
+          <Property Name="das_enabled" Type="Int32" />
+          <Property Name="hbc_enabled" Type="Int32" />
+          <Property Name="insert_date" Type="DateTime" Precision="3" />
+          <Property Name="insert_author" Type="Int32" />
+          <Property Name="update_date" Type="DateTime" Precision="3" />
+          <Property Name="update_author" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="sort_order" Type="Int32" />
+          <Property Name="director_id" Type="Int32" />
+          <Property Name="director_cc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductFilter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="t_ecf_vehicles" Relationship="Self.FK_t_ecf_vehicles_t__departments" FromRole="t__departments" ToRole="t_ecf_vehicles" />
+        </EntityType>
+        <EntityType Name="t_ecf_vehicles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="No_" Type="Int32" />
+          <Property Name="Matricula" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Combustivel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ano" Type="Int32" />
+          <Property Name="Empresa" Type="Int32" />
+          <Property Name="Departamento" Type="Int32" />
+          <Property Name="Responsavel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Utilizadores_9_18" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Utilizadores_18_9" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NumCartaoPagamento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RefCartaoPagamento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumCartaoFrota" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RefCartaoFrota" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kilometros" Type="Int32" />
+          <Property Name="PlafondMensal" Type="Double" />
+          <Property Name="Observacoes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Car" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="t__companies" Relationship="Self.FK_t_ecf_vehicles_t__companies" FromRole="t_ecf_vehicles" ToRole="t__companies" />
+          <NavigationProperty Name="t__departments" Relationship="Self.FK_t_ecf_vehicles_t__departments" FromRole="t_ecf_vehicles" ToRole="t__departments" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_t_ecf_vehicles_t__companies">
+          <End Role="t__companies" Type="Self.t__companies" Multiplicity="0..1" />
+          <End Role="t_ecf_vehicles" Type="Self.t_ecf_vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t__companies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="t_ecf_vehicles">
+              <PropertyRef Name="Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_ecf_vehicles_t__departments">
+          <End Role="t__departments" Type="Self.t__departments" Multiplicity="0..1" />
+          <End Role="t_ecf_vehicles" Type="Self.t_ecf_vehicles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t__departments">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="t_ecf_vehicles">
+              <PropertyRef Name="Departamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="vdlwebcontrolEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="t__companies" EntityType="Self.t__companies" />
+          <EntitySet Name="t__departments" EntityType="Self.t__departments" />
+          <EntitySet Name="t_ecf_vehicles" EntityType="Self.t_ecf_vehicles" />
+          <AssociationSet Name="FK_t_ecf_vehicles_t__companies" Association="Self.FK_t_ecf_vehicles_t__companies">
+            <End Role="t__companies" EntitySet="t__companies" />
+            <End Role="t_ecf_vehicles" EntitySet="t_ecf_vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_ecf_vehicles_t__departments" Association="Self.FK_t_ecf_vehicles_t__departments">
+            <End Role="t__departments" EntitySet="t__departments" />
+            <End Role="t_ecf_vehicles" EntitySet="t_ecf_vehicles" />
+          </AssociationSet>
+          <EntitySet Name="t_ecf_vehicle_types" EntityType="vdlwebcontrolModel.t_ecf_vehicle_types" />
+          <EntitySet Name="t_ecf_lines_fuel" EntityType="vdlwebcontrolModel.t_ecf_lines_fuel" />
+          <EntitySet Name="t_ecf_header" EntityType="vdlwebcontrolModel.t_ecf_header" />
+        </EntityContainer>
+        <EntityType Name="t_ecf_vehicle_types">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="t_ecf_lines_fuel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EcfFk" Type="Int32" />
+          <Property Name="LineNr" Type="Int32" />
+          <Property Name="CarRegistration" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FleetCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KilometersInitial" Type="Int32" />
+          <Property Name="KilometersFinal" Type="Int32" />
+          <Property Name="Liters" Type="Double" />
+          <Property Name="ExpenseAmount" Type="Double" />
+          <Property Name="ExpenseDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="VendorNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="VendorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AttachmentPath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NrEC" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Avg" Type="Double" />
+        </EntityType>
+        <EntityType Name="t_ecf_header">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestDate" Type="DateTime" Precision="3" />
+          <Property Name="UserIdExpenses" Type="Int32" />
+          <Property Name="VDLCompany" Type="Int32" />
+          <Property Name="Comments" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NrECEmployee" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="vdlwebcontrolModelStoreContainer" CdmEntityContainer="vdlwebcontrolEntities1">
+          <EntitySetMapping Name="t__companies">
+            <EntityTypeMapping TypeName="vdlwebcontrolModel.t__companies">
+              <MappingFragment StoreEntitySet="t__companies">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CompDescription" ColumnName="CompDescription" />
+                <ScalarProperty Name="CompDB" ColumnName="CompDB" />
+                <ScalarProperty Name="CompPHC" ColumnName="CompPHC" />
+                <ScalarProperty Name="CompPC" ColumnName="CompPC" />
+                <ScalarProperty Name="CompNAV" ColumnName="CompNAV" />
+                <ScalarProperty Name="queueNAV" ColumnName="queueNAV" />
+                <ScalarProperty Name="pcs_enabled" ColumnName="pcs_enabled" />
+                <ScalarProperty Name="das_enabled" ColumnName="das_enabled" />
+                <ScalarProperty Name="hbc_enabled" ColumnName="hbc_enabled" />
+                <ScalarProperty Name="hbc_form_enabled" ColumnName="hbc_form_enabled" />
+                <ScalarProperty Name="mas_enabled" ColumnName="mas_enabled" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="NIF" ColumnName="NIF" />
+                <ScalarProperty Name="Cod" ColumnName="Cod" />
+                <ScalarProperty Name="NAVComp" ColumnName="NAVComp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t__departments">
+            <EntityTypeMapping TypeName="vdlwebcontrolModel.t__departments">
+              <MappingFragment StoreEntitySet="t__departments">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="department_pt" ColumnName="department_pt" />
+                <ScalarProperty Name="department_en" ColumnName="department_en" />
+                <ScalarProperty Name="department_de" ColumnName="department_de" />
+                <ScalarProperty Name="pcs_enabled" ColumnName="pcs_enabled" />
+                <ScalarProperty Name="das_enabled" ColumnName="das_enabled" />
+                <ScalarProperty Name="hbc_enabled" ColumnName="hbc_enabled" />
+                <ScalarProperty Name="insert_date" ColumnName="insert_date" />
+                <ScalarProperty Name="insert_author" ColumnName="insert_author" />
+                <ScalarProperty Name="update_date" ColumnName="update_date" />
+                <ScalarProperty Name="update_author" ColumnName="update_author" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="sort_order" ColumnName="sort_order" />
+                <ScalarProperty Name="director_id" ColumnName="director_id" />
+                <ScalarProperty Name="director_cc" ColumnName="director_cc" />
+                <ScalarProperty Name="ProductFilter" ColumnName="ProductFilter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_ecf_vehicles">
+            <EntityTypeMapping TypeName="vdlwebcontrolModel.t_ecf_vehicles">
+              <MappingFragment StoreEntitySet="t_ecf_vehicles">
+                <ScalarProperty Name="PlafondMensal" ColumnName="PlafondMensal" />
+                <ScalarProperty Name="RefCartaoPagamento" ColumnName="RefCartaoPagamento" />
+                <ScalarProperty Name="RefCartaoFrota" ColumnName="RefCartaoFrota" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="No_" ColumnName="No_" />
+                <ScalarProperty Name="Matricula" ColumnName="Matricula" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Combustivel" ColumnName="Combustivel" />
+                <ScalarProperty Name="Ano" ColumnName="Ano" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+                <ScalarProperty Name="Responsavel" ColumnName="Responsavel" />
+                <ScalarProperty Name="Utilizadores_9_18" ColumnName="Utilizadores_9_18" />
+                <ScalarProperty Name="Utilizadores_18_9" ColumnName="Utilizadores_18_9" />
+                <ScalarProperty Name="NumCartaoFrota" ColumnName="NumCartaoFrota" />
+                <ScalarProperty Name="NumCartaoPagamento" ColumnName="NumCartaoPagamento" />
+                <ScalarProperty Name="Kilometros" ColumnName="Kilometros" />
+                <ScalarProperty Name="Observacoes" ColumnName="Observacoes" />
+                <ScalarProperty Name="Car" ColumnName="Car" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_ecf_vehicle_types">
+            <EntityTypeMapping TypeName="vdlwebcontrolModel.t_ecf_vehicle_types">
+              <MappingFragment StoreEntitySet="t_ecf_vehicle_types">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_ecf_lines_fuel">
+            <EntityTypeMapping TypeName="vdlwebcontrolModel.t_ecf_lines_fuel">
+              <MappingFragment StoreEntitySet="t_ecf_lines_fuel">
+                <ScalarProperty Name="Avg" ColumnName="Avg" />
+                <ScalarProperty Name="ExpenseDate" ColumnName="ExpenseDate" />
+                <ScalarProperty Name="NrEC" ColumnName="NrEC" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="AttachmentPath" ColumnName="AttachmentPath" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="VendorNo" ColumnName="VendorNo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ExpenseAmount" ColumnName="ExpenseAmount" />
+                <ScalarProperty Name="Liters" ColumnName="Liters" />
+                <ScalarProperty Name="KilometersFinal" ColumnName="KilometersFinal" />
+                <ScalarProperty Name="KilometersInitial" ColumnName="KilometersInitial" />
+                <ScalarProperty Name="PaymentCardNo" ColumnName="PaymentCardNo" />
+                <ScalarProperty Name="FleetCardNo" ColumnName="FleetCardNo" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="CarRegistration" ColumnName="CarRegistration" />
+                <ScalarProperty Name="LineNr" ColumnName="LineNr" />
+                <ScalarProperty Name="EcfFk" ColumnName="EcfFk" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_ecf_header">
+            <EntityTypeMapping TypeName="vdlwebcontrolModel.t_ecf_header">
+              <MappingFragment StoreEntitySet="t_ecf_header">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="NrECEmployee" ColumnName="NrECEmployee" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="VDLCompany" ColumnName="VDLCompany" />
+                <ScalarProperty Name="UserIdExpenses" ColumnName="UserIdExpenses" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

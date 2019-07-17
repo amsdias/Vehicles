@@ -1,0 +1,28 @@
+﻿.container.body-content {
+    width: 100% !important;
+    max-width: 100%;
+}
+
+@media (min-width: 576px) {
+    .container-fluid {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container-fluid {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container-fluid {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container-fluid {
+        max-width: 1140px;
+    }
+}

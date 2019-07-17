@@ -1,0 +1,264 @@
+﻿@*@model IEnumerable<Veiculos.Models.t_ecf_vehicles>*@
+@model Veiculos.Models.IndexViewModel
+
+@{
+    ViewBag.Title = "Lista";
+}
+<style>
+    table {
+        font-size: 12px;
+    }
+
+    .container.body-content {
+        width: 100% !important;
+        max-width: 100%;
+    }
+
+    .searchBar {
+        text-align: left;
+    }
+
+    #SearchString {
+        max-width: 500px;
+        width: 500px;
+    }
+
+    .h1, .h2, .h3, h1, h2, h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .display-5 {
+        font-size: 1.75rem;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+
+    .filter-option-inner-inner {
+        color: #000;
+    }
+
+    .margin-l {
+        
+    }
+
+    #SelectedTypes {
+    }
+
+    #SelectedTypes:focus {
+        height: auto;
+    }
+
+    #searchBar {
+        padding-left: 0px;
+        margin-left: 0px;
+    }
+
+    .v-margin > div {
+        padding: 0px 0 10px 15px;
+    }
+
+    @@media print {
+        .no-print {
+            display: none;
+        }
+    }
+</style>
+
+<h2 class="display-4">Lista de Veículos</h2>
+
+<p class="no-print">
+    @using (Html.BeginForm("Export", "vehicles", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Exportar" class="btn btn-info" style="width: 85px;" /> |
+            @Html.ActionLink("Adicionar Novo", "Create", null, new { @id = "create-link" })
+        </div>
+    }
+</p>
+
+@using (Html.BeginForm("Index", "vehicles", FormMethod.Post))
+{
+    <div class="container" id="searchBar">
+        <div class="row no-print v-margin">
+            <div class="col-sm-1" style="margin-right: 58px;">
+                <div class="btn-group-toggle">
+                    <label class="btn btn-outline-success" id="filterActiveButtonLabel" style="width: 85px;">
+                        @*<input type="checkbox" name="filteractive" id="filteractive" value="@Model.isFilterActive" autocomplete="off" onchange="this.form.submit();">Activos1*@
+                        @Html.CheckBox("Filteractive", (bool)Model.isFilterActive, new { onchange = "this.form.submit();", @id = "filterActiveButton" }) Activos
+                    </label>
+                </div>
+            </div>
+            @*@Html.TextBox("SearchString")*@
+            <div class="margin-l col-sm-3">
+                @Html.DropDownList("Empresa", new SelectList(Model.EmpresasList, "EmpresaId", "EmpresaNome"), "[Seleccionar Empresa]", new { onchange = "this.form.submit();", @class = "selectpicker" })
+            </div>
+            <div class="margin-l col-sm-3">
+                @Html.DropDownList("Departamento", new SelectList(Model.DepartamentosList, "DepartamentoId", "DepartamentoNome"), "[Seleccionar Departamento]", new { onchange = "this.form.submit();", @class = "selectpicker" })
+            </div>
+            @*@Html.DropDownList("Tipo", new SelectList(Model.TypesList, "Tipo", "Tipo"), "[Seleccionar Tipos]", new { onchange = "this.form.submit();" })*@
+            <div class="margin-l col-sm-4">
+                @Html.ListBoxFor(m => m.SelectedTypes, new MultiSelectList(Model.Types, "tipo"), new { style = "", @class = "selectpicker", title = "[Seleccionar Tipos]", data_width = "auto" })
+                <input type="submit" value="Busca" class="btn btn-primary" style="margin-left: 10px;" />
+            </div>
+            @*<div class="margin-l">
+            <input type="submit" value="Busca" class="btn btn-primary" />
+        </div>*@
+        </div>
+    </div>
+}
+
+<div class="display-5 no-print" style="padding-top: 10px;">@Model.VeiculosList.Count Veículo(s)</div>
+<br />
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <!--<th>
+        @Html.DisplayNameFor(model => model.VeiculosList[0].No_)
+    </th>-->
+            <th>
+                @Html.ActionLink("Matrícula", "Index", new { sortOrder = ViewBag.MatriculaSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Tipo", "Index", new { sortOrder = ViewBag.TipoSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Marca", "Index", new { sortOrder = ViewBag.MarcaSortParm })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VeiculosList[0].Modelo)
+            </th>
+            <!--<th>
+                @Html.DisplayNameFor(model => model.VeiculosList[0].Categoria)
+            </th>-->
+            <th>
+                @Html.DisplayNameFor(model => model.VeiculosList[0].Combustivel)
+            </th>
+            <th>
+                @Html.ActionLink("Ano", "Index", new { sortOrder = ViewBag.AnoSortParm })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VeiculosList[0].Responsavel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VeiculosList[0].Utilizadores_9_18)
+            </th>
+            <!--<th>
+        @Html.DisplayNameFor(model => model.VeiculosList[0].Utilizadores_18_9)
+    </th>-->
+            <th class="no-print">
+                C. Pagamento
+            </th>
+            <th class="no-print">
+                C. Frota
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VeiculosList[0].Kilometros)
+            </th>
+            <th>
+                @Html.ActionLink("Pl. Mensal", "Index", new { sortOrder = ViewBag.PlafondSortParm })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VeiculosList[0].t__companies.CompDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VeiculosList[0].t__departments.department_pt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VeiculosList[0].Observacoes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.VeiculosList)
+        {
+            <tr>
+                <!--<td>
+                    @Html.DisplayFor(modelItem => item.No_)
+                </td>-->
+                <td>
+                    @Html.ActionLink(item.Matricula, "Details", new { id = item.ID })
+                    <!--@Html.DisplayFor(modelItem => item.Matricula)-->
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo)
+                </td>
+                <!--<td>
+                    @Html.DisplayFor(modelItem => item.Categoria)
+                </td>-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.Combustivel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ano)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Responsavel)
+                </td>
+                <td title="@item.Utilizadores_9_18">
+                    @Html.DisplayFor(modelItem => item.SubstrUtil9_18)
+                </td>
+                <!--<td>
+                    @Html.DisplayFor(modelItem => item.SubstrUtil18_9, new { @title = item.Utilizadores_18_9 })
+                </td>-->
+                <td class="no-print">
+                    @Html.DisplayFor(modelItem => item.RefCartaoPagamento)
+                </td>
+                <td class="no-print">
+                    @Html.DisplayFor(modelItem => item.RefCartaoFrota)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kilometros)
+                </td>
+                <td>
+                    €@Html.DisplayFor(modelItem => item.PlafondMensal)
+                </td>                
+                <td title="@item.t__companies.CompDescription">
+                    @Html.DisplayFor(modelItem => item.SubstrEmpresa)
+                </td>
+                <td title="@item.t__departments.department_pt">
+                    @Html.DisplayFor(modelItem => item.SubstrDepartamento)
+                </td>
+                <td title="@item.Observacoes">
+                    @Html.DisplayFor(modelItem => item.SubstrObservacoes)
+                </td>
+                <td class="no-print">
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+                    @*@Html.ActionLink("Detalhes", "Details", new { id=item.ID }) |*@
+                    @Html.ActionLink("Apagar", "Delete", new { id = item.ID
+        })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts
+{
+    <link href="~/Content/bootstrap-select.css" rel="stylesheet">
+    <script src="@Url.Content("~/Scripts/bootstrap.bundle.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-select.js")"></script>
+    <script type="text/javascript">
+        $("document").ready(function () {
+            if ($("#filterActiveButton").prop('checked')) {
+                $("#filterActiveButtonLabel").addClass('active');
+            }
+        });
+
+        $("#filterActiveButtonLabel").hover(function () {
+            $(this).addClass('focus');
+        }, function () {
+            $(this).removeClass('focus');
+        });
+
+
+    </script>
+}

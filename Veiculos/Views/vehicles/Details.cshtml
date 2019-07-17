@@ -1,0 +1,810 @@
+﻿@*@model Veiculos.Models.t_ecf_vehicles*@
+@model Veiculos.Models.DetailsViewModel
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Details";
+}
+<style>
+
+    .accordion {
+        width: 100% !important;
+        max-width: 100%;
+    }
+
+    #txtbox {
+        padding-left: 5px;
+        border-radius: 3px;
+    }
+
+
+
+    canvas {
+        height: 500px !important;
+    }
+
+    .col-sm-4 {
+        text-align: right;
+    }
+
+    .pagination {
+        display: inline-block;
+        padding-left: 0;
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    .pagination > li {
+        display: inline;
+    }
+
+    .pagination > li {
+        display: inline-grid;
+    }
+
+    #yearInputRow {
+        margin-left: 0px;
+    }
+
+    .pagination > li > a,
+    .pagination > li > span {
+        position: relative;
+        float: left;
+        padding: 6px 12px;
+        margin-left: -1px;
+        line-height: 1.42857143;
+        color: #337ab7;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+
+    .pagination > li:first-child > a,
+    .pagination > li:first-child > span {
+        margin-left: 0;
+        border-bottom-left-radius: 4px;
+        border-top-left-radius: 4px;
+    }
+
+    .pagination > li:last-child > a,
+    .pagination > li:last-child > span {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+
+    .pagination > li > a:hover,
+    .pagination > li > span:hover,
+    .pagination > li > a:focus,
+    .pagination > li > span:focus {
+        background-color: #eeeeee;
+    }
+
+    .pagination > .active > a,
+    .pagination > .active > span,
+    .pagination > .active > a:hover,
+    .pagination > .active > span:hover,
+    .pagination > .active > a:focus,
+    .pagination > .active > span:focus {
+        z-index: 3;
+        color: #fff;
+        cursor: default;
+        background-color: #337ab7;
+        border-color: #337ab7;
+    }
+
+    .pagination > .disabled > span,
+    .pagination > .disabled > a,
+    .pagination > .disabled > a:hover,
+    .pagination > .disabled > a:focus {
+        color: #999999;
+        cursor: not-allowed;
+        background-color: #eee;
+        border-color: #dddddd;
+    }
+
+    .pagination-lg > li > a,
+    .pagination-lg > li > span {
+        padding: 0;
+        font-size: 18px;
+    }
+
+    .pagination-lg > li:first-child > a,
+    .pagination-lg > li:first-child > span {
+        border-bottom-left-radius: 4px;
+        border-top-left-radius: 4px;
+    }
+
+    .pagination-lg > li:last-child > a,
+    .pagination-lg > li:last-child > span {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+
+    .pagination-sm > li > a,
+    .pagination-sm > li > span {
+        padding: 0;
+        font-size: 12px;
+    }
+
+    .pagination-sm > li:first-child > a,
+    .pagination-sm > li:first-child > span {
+        border-bottom-left-radius: 4px;
+        border-top-left-radius: 4px;
+    }
+
+    .pagination-sm > li:last-child > a,
+    .pagination-sm > li:last-child > span {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+
+    .h1, .h2, .h3, h1, h2, h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .display-6 {
+        font-size: 1.5rem;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+</style>
+
+<div class="container-fluid">
+    <h2 class="display-4">Detalhes de @Model.Vehicle.Marca @Model.Vehicle.Modelo</h2>
+</div>
+
+<div class="container-fluid">
+    <hr />
+    <dl class="row">
+        @*<dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.No_)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.No_)
+        </dd>*@
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.Matricula)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.Matricula)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.Tipo)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.Tipo)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.Marca)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.Marca)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.Modelo)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.Modelo)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.Categoria)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.Categoria)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.Combustivel)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.Combustivel)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.Ano)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.Ano)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.Responsavel)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.Responsavel)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.Utilizadores_9_18)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.Utilizadores_9_18)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.Utilizadores_18_9)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.Utilizadores_18_9)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.RefCartaoPagamento)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.RefCartaoPagamento)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.NumCartaoPagamento)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.NumCartaoPagamento)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.RefCartaoFrota)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.RefCartaoFrota)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.NumCartaoFrota)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.NumCartaoFrota)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.Kilometros)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.Kilometros)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.PlafondMensal)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.PlafondMensal)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.Observacoes)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.Observacoes)&#8203;
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Car)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car)
+        </dd>*@
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.Activo)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.Activo)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.t__companies.CompDescription)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.t__companies.CompDescription)
+        </dd>
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Vehicle.t__departments.department_pt)
+        </dt>
+
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Vehicle.t__departments.department_pt)
+        </dd>
+
+    </dl>
+    <div class="form-group row">
+        <div class="col-md-offset-2 col-md-6">
+            <p>
+                @Html.ActionLink("Editar", "Edit", new { id = Model.Vehicle.ID }) |
+                @Html.ActionLink("Voltar à Lista", "Index")
+            </p>
+        </div>
+    </div>
+</div>
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Histórico de Pedidos
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lines[0].CarRegistration)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lines[0].User)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lines[0].FleetCardNo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lines[0].PaymentCardNo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lines[0].KilometersInitial)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lines[0].KilometersFinal)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lines[0].Liters)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lines[0].ExpenseAmount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lines[0].Avg)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lines[0].Description)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lines[0].VendorName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lines[0].ExpenseDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lines[0].TimeStamp)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Lines)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CarRegistration)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FleetCardNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PaymentCardNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.KilometersInitial)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.KilometersFinal)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Liters)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ExpenseAmount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Avg)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VendorName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ExpenseDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TimeStamp)
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                <br />
+                Page @(Model.Lines.PageCount < Model.Lines.PageNumber ? 0 : Model.Lines.PageNumber) of @Model.Lines.PageCount
+
+                @Html.PagedListPager(Model.Lines, page => Url.Action("Details", new { Model.Vehicle.ID, page }))
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Consumos Mensais
+                </button>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+                <!--<h4 class="display-6">Estatísticas</h4>-->
+                <div class="form-group row" id="yearInputRow">
+                    <label for="txtbox" class="col-sm-1 col-form-label h6">Ano</label>
+                    <div class="span5 col-sm-1" id="sandbox-container">
+                        <input type="text" class="form-control" id="datepicker">
+                    </div>
+                </div>
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Mês</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Diferença</th>
+                            <th scope="col">Consumo médio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+                <div class="form-control" id="yearTotal"></div>
+                <div id="chartContainer"></div>
+                <div id="chart-container" class="chart-container" style="position: relative; width:90vw; margin-top: 20px;">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="@Url.Content("~/Scripts/jquery-3.3.1.min.js")"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.standalone.css" rel="stylesheet" type="text/css" />
+<script>
+    var uri = '../../api/veiculos/GetList';
+    var datapoints = [];
+    var labels = [];
+    var datapoints2 = [];
+    var datapoints3 = [];
+    var currDate = new Date()
+    var carRegistration = "@(Model.Vehicle.Matricula)";
+    var carPlafond = "@(Model.Vehicle.PlafondMensal)";
+    const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+    ];
+
+    $(document).ready(function () {
+        var total = 0.0;
+
+        itemIter = 1;
+        $('#txtbox').val(currDate.getFullYear());
+        // Send an AJAX request
+        $.getJSON(uri + "?CarRegistration=" + carRegistration + "&year=" + currDate.getFullYear())
+            .done(function (data) {
+                // On success, 'data' contains a list of products.
+                $.each(data, function (key, item) {
+                    // Add a list item for the product.
+                    total += parseFloat(item.Amount);
+                    var diff = parseFloat(carPlafond) - parseFloat(item.Amount);
+                    if (diff !== diff) { diff = 0 };
+                    var rowClass = diff < 0 ? "table-danger" : "table-success";
+                    $("<tr id='row" + itemIter + "' class='" + rowClass + "'></tr>").appendTo("#tableBody");
+                    $("<th scope='row'>" + monthNames[item.month - 1] + "</th>").appendTo("#row" + itemIter);
+                    $("<td>€" + item.Amount + "</td>").appendTo("#row" + itemIter);
+                    $("<td>€" + diff + "</td>").appendTo("#row" + itemIter);
+                    $("<td>" + item.Mileage + " l/100km</td>").appendTo("#row" + itemIter);
+                    //datapoints.push({ label: monthNames[item.month - 1], y: parseFloat(item.Amount) });
+                    labels.push(monthNames[item.month - 1]);
+                    datapoints2.push(parseFloat(item.Amount));
+                    datapoints3.push(parseFloat(item.Mileage));
+                    itemIter += 1;
+                });
+                $("<h6>Total do ano: €" + total + " / €" + carPlafond * 12 + "</h6>").appendTo("#yearTotal");
+                //drawChart();
+                drawChartJs2();
+            });
+
+    });
+
+    function formatItem(item) {
+      return monthNames[item.month-1] + ': €' + item.Amount;
+    }
+
+    $('#sandbox-container input').val(currDate.getFullYear()).datepicker({
+        format: "yyyy",
+        startView: 2,
+        minViewMode: 2,
+        maxViewMode: 3,
+        todayBtn: "linked",
+        todayHighlight: true,
+        autoclose: true
+    }).on('changeDate', function (e) {
+        find($('#sandbox-container input').val());
+    });
+
+    function find(year) {
+        var total = 0.0;
+        var currDate = new Date();
+        itemIter = 1;
+        labels = [];
+        datapoints2 = [];
+        datapoints3 = [];
+        $('#tableBody').empty();
+        $('#yearTotal').empty();
+        $.getJSON(uri + "?CarRegistration=" + carRegistration + "&year=" + year)
+            .done(function (data) {
+                // On success, 'data' contains a list of products.
+                console.log(data);
+                if ($.trim(data)) {
+                    $.each(data, function (key, item) {
+                        total += parseFloat(item.Amount);
+                        var diff = parseFloat(carPlafond) - parseFloat(item.Amount);
+                        var rowClass = diff < 0 ? "table-danger" : "table-success";
+                        $("<tr id='row" + itemIter + "' class='" + rowClass + "'></tr>").appendTo("#tableBody");
+                        $("<th scope='row'>" + monthNames[item.month - 1] + "</th>").appendTo("#row" + itemIter);
+                        $("<td>€" + item.Amount + "</td>").appendTo("#row" + itemIter);
+                        $("<td>€" + diff + "</td>").appendTo("#row" + itemIter);
+                        $("<td>" + item.Mileage + " l/100km</td>").appendTo("#row" + itemIter);
+                        labels.push(monthNames[item.month - 1]);
+                        datapoints2.push(parseFloat(item.Amount));
+                        datapoints3.push(parseFloat(item.Mileage));
+                        itemIter += 1;
+                    });
+                    $("<h6>Total do ano: €" + total + " / €" + carPlafond*12 + "</h6>").appendTo("#yearTotal");
+                    //drawChart();
+                    drawChartJs2();
+                } else {
+                    $('<th>', { text: "Nada encontrado" }).appendTo($('#tableBody'));
+                    $("<h6>Total do ano: N/D</h6>").appendTo("#yearTotal");
+                    drawChartJs2();
+                }
+            });
+    }
+
+    var resetCanvas = function () {
+        $('#myChart').remove(); // this is my <canvas> element
+        $('#chart-container').append('<canvas id="myChart"><canvas>');
+        canvas = document.querySelector('#myChart');
+        ctx = canvas.getContext('2d');
+        ctx.canvas.width = $('#graph').width(); // resize to parent width
+        ctx.canvas.height = $('#graph').height(); // resize to parent height
+        var x = canvas.width / 2;
+        var y = canvas.height / 2;
+        ctx.font = '10pt Verdana';
+        ctx.textAlign = 'center';
+        ctx.fillText('...', x, y);
+    };
+
+    function drawChartJs() {
+        $('#myChart').remove(); // this is my <canvas> element
+        $('#chart-container').append('<canvas id="myChart"><canvas>');
+        var ctx = document.getElementById("myChart").getContext('2d');
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Consumo mensal em €',
+                    data: datapoints2,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(245, 200, 98, 0.2)',
+                        'rgba(29, 103, 91, 0.2)',
+                        'rgba(10, 78, 252, 0.2)',
+                        'rgba(180, 158, 23, 0.2)',
+                        'rgba(34,45,120, 0.2)',
+                        'rgba(5, 127, 53, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(245, 200, 98, 1)',
+                        'rgba(29, 103, 91, 1)',
+                        'rgba(10, 78, 252, 1)',
+                        'rgba(180, 158, 23, 1)',
+                        'rgba(34,45,120, 1)',
+                        'rgba(5, 127, 53, 1)'
+                    ],
+                    borderWidth: 1
+                }, {
+                        label: 'Consumo médio (l/100km)',
+                        data: datapoints3,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(245, 200, 98, 0.2)',
+                            'rgba(29, 103, 91, 0.2)',
+                            'rgba(10, 78, 252, 0.2)',
+                            'rgba(180, 158, 23, 0.2)',
+                            'rgba(34,45,120, 0.2)',
+                            'rgba(5, 127, 53, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(245, 200, 98, 1)',
+                            'rgba(29, 103, 91, 1)',
+                            'rgba(10, 78, 252, 1)',
+                            'rgba(180, 158, 23, 1)',
+                            'rgba(34,45,120, 1)',
+                            'rgba(5, 127, 53, 1)'
+                        ],
+                        borderWidth: 1
+                    },
+
+                ]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                annotation: {
+                    annotations: [{
+                        type: 'line',
+                        mode: 'horizontal',
+                        scaleID: 'y-axis-0',
+                        value: carPlafond,
+                        borderColor: 'tomato',
+                        borderWidth: 2
+                    }],
+                    drawTime: "afterDraw" // (default)
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: '€'
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Meses'
+                        }
+                    }]
+                }
+            }
+        });
+    }
+
+    function drawChartJs2() {
+        $('#myChart').remove(); // this is my <canvas> element
+        $('#chart-container').append('<canvas id="myChart"><canvas>');
+        var ctx = document.getElementById("myChart").getContext('2d');
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Consumo mensal em €',
+                    data: datapoints2,
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    stack: 'Stack 0'
+                }, {
+                    label: 'Consumo médio (l/100km)',
+                    data: datapoints3,
+                        backgroundColor: 'rgba(54, 162, 235, 1)',
+                    stack: 'Stack 0'
+                },
+
+                ]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
+                },
+                annotation: {
+                    annotations: [{
+                        type: 'line',
+                        mode: 'horizontal',
+                        scaleID: 'y-axis-0',
+                        value: carPlafond,
+                        borderColor: 'tomato',
+                        borderWidth: 2
+                    }],
+                    drawTime: "afterDraw" // (default)
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        stacked: true,
+                        ticks: {
+                            beginAtZero: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: '€, l/100km'
+                        }
+                    }],
+                    xAxes: [{
+                        stacked: true,
+                        ticks: {
+                            beginAtZero: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Meses'
+                        }
+                    }]
+                }
+            }
+        });
+    }
+</script>
+@section Scripts
+{
+    <link href="~/Content/details.css" rel="stylesheet">
+}
+

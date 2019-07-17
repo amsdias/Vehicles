@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vdlwebcontrolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="t__companies">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CompDB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CompPHC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CompPC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CompNAV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="queueNAV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="pcs_enabled" Type="Int32" />
+    <Property Name="das_enabled" Type="Int32" />
+    <Property Name="hbc_enabled" Type="Int32" />
+    <Property Name="hbc_form_enabled" Type="Int32" />
+    <Property Name="mas_enabled" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="NIF" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Cod" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NAVComp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="t_ecf_vehicles" Relationship="Self.FK_t_ecf_vehicles_t__companies" FromRole="t__companies" ToRole="t_ecf_vehicles" />
+  </EntityType>
+  <EntityType Name="t__departments">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="department_pt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="department_en" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="department_de" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pcs_enabled" Type="Int32" />
+    <Property Name="das_enabled" Type="Int32" />
+    <Property Name="hbc_enabled" Type="Int32" />
+    <Property Name="insert_date" Type="DateTime" Precision="3" />
+    <Property Name="insert_author" Type="Int32" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="update_author" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="sort_order" Type="Int32" />
+    <Property Name="director_id" Type="Int32" />
+    <Property Name="director_cc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductFilter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="t_ecf_vehicles" Relationship="Self.FK_t_ecf_vehicles_t__departments" FromRole="t__departments" ToRole="t_ecf_vehicles" />
+  </EntityType>
+  <EntityType Name="t_ecf_vehicles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="No_" Type="Int32" />
+    <Property Name="Matricula" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Combustivel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ano" Type="Int32" />
+    <Property Name="Empresa" Type="Int32" />
+    <Property Name="Departamento" Type="Int32" />
+    <Property Name="Responsavel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Utilizadores_9_18" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Utilizadores_18_9" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NumCartaoPagamento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RefCartaoPagamento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NumCartaoFrota" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RefCartaoFrota" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Kilometros" Type="Int32" />
+    <Property Name="PlafondMensal" Type="Double" />
+    <Property Name="Observacoes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Car" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="t__companies" Relationship="Self.FK_t_ecf_vehicles_t__companies" FromRole="t_ecf_vehicles" ToRole="t__companies" />
+    <NavigationProperty Name="t__departments" Relationship="Self.FK_t_ecf_vehicles_t__departments" FromRole="t_ecf_vehicles" ToRole="t__departments" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_t_ecf_vehicles_t__companies">
+    <End Role="t__companies" Type="Self.t__companies" Multiplicity="0..1" />
+    <End Role="t_ecf_vehicles" Type="Self.t_ecf_vehicles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t__companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_ecf_vehicles">
+        <PropertyRef Name="Empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_ecf_vehicles_t__departments">
+    <End Role="t__departments" Type="Self.t__departments" Multiplicity="0..1" />
+    <End Role="t_ecf_vehicles" Type="Self.t_ecf_vehicles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t__departments">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_ecf_vehicles">
+        <PropertyRef Name="Departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="vdlwebcontrolEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="t__companies" EntityType="Self.t__companies" />
+    <EntitySet Name="t__departments" EntityType="Self.t__departments" />
+    <EntitySet Name="t_ecf_vehicles" EntityType="Self.t_ecf_vehicles" />
+    <AssociationSet Name="FK_t_ecf_vehicles_t__companies" Association="Self.FK_t_ecf_vehicles_t__companies">
+      <End Role="t__companies" EntitySet="t__companies" />
+      <End Role="t_ecf_vehicles" EntitySet="t_ecf_vehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_ecf_vehicles_t__departments" Association="Self.FK_t_ecf_vehicles_t__departments">
+      <End Role="t__departments" EntitySet="t__departments" />
+      <End Role="t_ecf_vehicles" EntitySet="t_ecf_vehicles" />
+    </AssociationSet>
+    <EntitySet Name="t_ecf_vehicle_types" EntityType="vdlwebcontrolModel.t_ecf_vehicle_types" />
+    <EntitySet Name="t_ecf_lines_fuel" EntityType="vdlwebcontrolModel.t_ecf_lines_fuel" />
+    <EntitySet Name="t_ecf_header" EntityType="vdlwebcontrolModel.t_ecf_header" />
+  </EntityContainer>
+  <EntityType Name="t_ecf_vehicle_types">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="t_ecf_lines_fuel">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EcfFk" Type="Int32" />
+    <Property Name="LineNr" Type="Int32" />
+    <Property Name="CarRegistration" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FleetCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KilometersInitial" Type="Int32" />
+    <Property Name="KilometersFinal" Type="Int32" />
+    <Property Name="Liters" Type="Double" />
+    <Property Name="ExpenseAmount" Type="Double" />
+    <Property Name="ExpenseDate" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="VendorNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="VendorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AttachmentPath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NrEC" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Avg" Type="Double" />
+  </EntityType>
+  <EntityType Name="t_ecf_header">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RequestDate" Type="DateTime" Precision="3" />
+    <Property Name="UserIdExpenses" Type="Int32" />
+    <Property Name="VDLCompany" Type="Int32" />
+    <Property Name="Comments" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NrECEmployee" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

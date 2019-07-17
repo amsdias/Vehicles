@@ -1,0 +1,371 @@
+﻿@model Veiculos.Models.t_ecf_vehicles
+
+@{
+    ViewBag.Title = "Create";
+}
+<style>
+    .checkbox input[type="checkbox"] {
+        margin-left: 0px;
+    }
+
+    .h1, .h2, .h3, h1, h2, h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    input[type="checkbox"] {
+        vertical-align: middle;
+    }
+
+    label {
+        text-align: right;
+    }
+
+    .ui-autocomplete {
+        position: absolute;
+        z-index: 1000;
+        cursor: pointer;
+        padding: 0;
+        margin-top: 2px;
+        list-style: none;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+
+        -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .ui-autocomplete > li {
+        padding: 3px 0px;
+    }
+
+    .ui-helper-hidden-accessible {
+        display: none;
+    }
+
+    .ui-menu-item > div.ui-menu-item-wrapper {
+        display: block;
+        padding: 3px 5px;
+        clear: both;
+        font-weight: normal;
+        line-height: 18px;
+        color: #495057;
+        white-space: nowrap;
+    }
+    .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-state-active.ui-button:hover {      
+        text-decoration: none;
+        background-color: #ddd;
+    }
+
+    
+</style>
+<div class="container-fluid">
+    <h2 class="display-4">Adicionar Novo Veículo</h2>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <!--
+        <div class="form-group row">
+            @Html.LabelFor(model => model.No_, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.No_, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.No_, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        -->
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Matricula, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.Matricula, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Matricula, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Marca, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.Marca, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Marca, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Modelo, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.Modelo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Modelo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Categoria, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.Categoria, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Categoria, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Combustivel, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.Combustivel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Combustivel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Ano, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.Ano, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ano, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Empresa, "Empresa", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.DropDownList("Empresa", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Empresa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Departamento, "Departamento", htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.DropDownList("Departamento", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Departamento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Responsavel, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.Responsavel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Responsavel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Utilizadores_9_18, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.Utilizadores_9_18, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Utilizadores_9_18, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Utilizadores_18_9, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.Utilizadores_18_9, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Utilizadores_18_9, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.RefCartaoPagamento, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.RefCartaoPagamento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RefCartaoPagamento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.NumCartaoPagamento, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.NumCartaoPagamento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NumCartaoPagamento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.RefCartaoFrota, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.RefCartaoFrota, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RefCartaoFrota, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.NumCartaoFrota, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.NumCartaoFrota, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NumCartaoFrota, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Kilometros, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.Kilometros, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Kilometros, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.PlafondMensal, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.PlafondMensal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PlafondMensal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Observacoes, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+                @Html.EditorFor(model => model.Observacoes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Observacoes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Car, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                <div class="col-sm-8">
+                    @Html.EditorFor(model => model.Car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Car, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Activo, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+            <div class="col-sm-8">
+
+                @Html.EditorFor(model => model.Activo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Activo, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-offset-2 col-sm-8">
+                <input type="submit" value="Criar" class="btn btn-primary" /> |
+                @Html.ActionLink("Voltar à Lista", "Index")
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+
+</div>
+
+@section Scripts {
+
+
+    @Scripts.Render("~/bundles/jqueryui")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Tipo").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "../api/Veiculos/TypesAutocomplete",
+                        type: "GET",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.tipo, value: item.tipo };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (resultsCount) {}
+                }
+            });
+
+            $("#Marca").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "../api/Veiculos/BrandsAutocomplete",
+                        type: "GET",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.Marca, value: item.Marca };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (resultsCount) { }
+                }
+            });
+
+            $("#Modelo").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "../api/Veiculos/ModelsAutocomplete",
+                        type: "GET",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.Modelo, value: item.Modelo };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (resultsCount) { }
+                }
+            });
+
+            $("#Categoria").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "../api/Veiculos/CategoryAutocomplete",
+                        type: "GET",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.Categoria, value: item.Categoria };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "",
+                    results: function (resultsCount) { }
+                }
+            });
+        })
+    </script>
+}

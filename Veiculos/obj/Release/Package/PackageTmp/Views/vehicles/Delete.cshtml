@@ -1,0 +1,212 @@
+﻿@model Veiculos.Models.t_ecf_vehicles
+
+@{
+    ViewBag.Title = "Delete";
+}
+<style>
+    .h1, .h2, .h3, h1, h2, h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .col-sm-4 {
+        text-align: right;
+    }
+</style>
+<div class="container-fluid">
+    <h2 class="display-4">Apagar @Model.Marca @Model.Modelo?</h2>
+</div>
+<div class="container-fluid">
+    <div>
+        <!--<h4>@Model.Marca @Model.Modelo</h4>-->
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.No_)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.No_)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Matricula)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Matricula)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Tipo)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Tipo)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Marca)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Marca)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Modelo)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Modelo)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Categoria)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Categoria)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Combustivel)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Combustivel)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Ano)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Ano)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Responsavel)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Responsavel)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Utilizadores_9_18)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Utilizadores_9_18)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Utilizadores_18_9)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Utilizadores_18_9)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.RefCartaoPagamento)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.RefCartaoPagamento)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.NumCartaoPagamento)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.NumCartaoPagamento)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.RefCartaoFrota)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.RefCartaoFrota)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.NumCartaoFrota)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.NumCartaoFrota)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Kilometros)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Kilometros)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.PlafondMensal)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.PlafondMensal)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Observacoes)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Observacoes)&#8203;
+            </dd>
+
+            @*<dt>
+            @Html.DisplayNameFor(model => model.Car)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car)
+        </dd>*@
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Activo)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Activo)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.t__companies.CompDescription)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.t__companies.CompDescription)
+            </dd>
+
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.t__departments.department_pt)
+            </dt>
+
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.t__departments.department_pt)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Apagar" class="btn btn-danger" /> |
+                @Html.ActionLink("Voltar à Lista", "Index")
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vdlwebcontrolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="t__companies">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompDescription" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompDB" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompPHC" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompPC" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompNAV" Type="nvarchar" MaxLength="100" />
+    <Property Name="queueNAV" Type="nvarchar" MaxLength="100" />
+    <Property Name="pcs_enabled" Type="int" />
+    <Property Name="das_enabled" Type="int" />
+    <Property Name="hbc_enabled" Type="int" />
+    <Property Name="hbc_form_enabled" Type="int" />
+    <Property Name="mas_enabled" Type="int" />
+    <Property Name="status" Type="int" />
+    <Property Name="NIF" Type="nvarchar" MaxLength="20" />
+    <Property Name="Cod" Type="nvarchar" MaxLength="10" />
+    <Property Name="NAVComp" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t__departments">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="department_pt" Type="nvarchar" MaxLength="50" />
+    <Property Name="department_en" Type="nvarchar" MaxLength="50" />
+    <Property Name="department_de" Type="nvarchar" MaxLength="50" />
+    <Property Name="pcs_enabled" Type="int" />
+    <Property Name="das_enabled" Type="int" />
+    <Property Name="hbc_enabled" Type="int" />
+    <Property Name="insert_date" Type="datetime" />
+    <Property Name="insert_author" Type="int" />
+    <Property Name="update_date" Type="datetime" />
+    <Property Name="update_author" Type="int" />
+    <Property Name="status" Type="int" />
+    <Property Name="sort_order" Type="int" />
+    <Property Name="director_id" Type="int" />
+    <Property Name="director_cc" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProductFilter" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_ecf_header">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequestDate" Type="datetime" />
+    <Property Name="UserIdExpenses" Type="int" />
+    <Property Name="VDLCompany" Type="int" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="250" />
+    <Property Name="NrECEmployee" Type="nvarchar" MaxLength="250" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_ecf_lines_fuel">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EcfFk" Type="int" />
+    <Property Name="LineNr" Type="int" />
+    <Property Name="CarRegistration" Type="nvarchar" MaxLength="20" />
+    <Property Name="User" Type="nvarchar" MaxLength="50" />
+    <Property Name="FleetCardNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentCardNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="KilometersInitial" Type="int" />
+    <Property Name="KilometersFinal" Type="int" />
+    <Property Name="Liters" Type="float" />
+    <Property Name="ExpenseAmount" Type="float" />
+    <Property Name="ExpenseDate" Type="datetime" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="VendorNo" Type="nvarchar" MaxLength="20" />
+    <Property Name="VendorName" Type="nvarchar" MaxLength="50" />
+    <Property Name="AttachmentPath" Type="nvarchar" MaxLength="250" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="250" />
+    <Property Name="NrEC" Type="nvarchar" MaxLength="250" />
+    <Property Name="Avg" Type="float" />
+  </EntityType>
+  <EntityType Name="t_ecf_vehicles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="No_" Type="int" />
+    <Property Name="Matricula" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tipo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Marca" Type="nvarchar" MaxLength="50" />
+    <Property Name="Modelo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Categoria" Type="nvarchar" MaxLength="50" />
+    <Property Name="Combustivel" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ano" Type="int" />
+    <Property Name="Empresa" Type="int" />
+    <Property Name="Departamento" Type="int" />
+    <Property Name="Responsavel" Type="nvarchar" MaxLength="50" />
+    <Property Name="Utilizadores_9_18" Type="nvarchar" MaxLength="500" />
+    <Property Name="Utilizadores_18_9" Type="nvarchar" MaxLength="500" />
+    <Property Name="NumCartaoPagamento" Type="nvarchar" MaxLength="50" />
+    <Property Name="RefCartaoPagamento" Type="nvarchar" MaxLength="50" />
+    <Property Name="NumCartaoFrota" Type="nvarchar" MaxLength="50" />
+    <Property Name="RefCartaoFrota" Type="nvarchar" MaxLength="50" />
+    <Property Name="Kilometros" Type="int" />
+    <Property Name="PlafondMensal" Type="float" />
+    <Property Name="Observacoes" Type="nvarchar" MaxLength="500" />
+    <Property Name="Car" Type="nvarchar" MaxLength="100" />
+    <Property Name="Activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'vdlwebcontrol.dbo.t_ecf_vehicle_types' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="t_ecf_vehicle_types">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="tipo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_t_ecf_vehicles_t__companies">
+    <End Role="t__companies" Type="Self.t__companies" Multiplicity="0..1" />
+    <End Role="t_ecf_vehicles" Type="Self.t_ecf_vehicles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t__companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_ecf_vehicles">
+        <PropertyRef Name="Empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_ecf_vehicles_t__departments">
+    <End Role="t__departments" Type="Self.t__departments" Multiplicity="0..1" />
+    <End Role="t_ecf_vehicles" Type="Self.t_ecf_vehicles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t__departments">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_ecf_vehicles">
+        <PropertyRef Name="Departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="vdlwebcontrolModelStoreContainer">
+    <EntitySet Name="t__companies" EntityType="Self.t__companies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t__departments" EntityType="Self.t__departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_ecf_header" EntityType="Self.t_ecf_header" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_ecf_lines_fuel" EntityType="Self.t_ecf_lines_fuel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_ecf_vehicles" EntityType="Self.t_ecf_vehicles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_ecf_vehicle_types" EntityType="Self.t_ecf_vehicle_types" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [t_ecf_vehicle_types].[ID] AS [ID], 
+    [t_ecf_vehicle_types].[tipo] AS [tipo]
+    FROM [dbo].[t_ecf_vehicle_types] AS [t_ecf_vehicle_types]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_t_ecf_vehicles_t__companies" Association="Self.FK_t_ecf_vehicles_t__companies">
+      <End Role="t__companies" EntitySet="t__companies" />
+      <End Role="t_ecf_vehicles" EntitySet="t_ecf_vehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_ecf_vehicles_t__departments" Association="Self.FK_t_ecf_vehicles_t__departments">
+      <End Role="t__departments" EntitySet="t__departments" />
+      <End Role="t_ecf_vehicles" EntitySet="t_ecf_vehicles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
